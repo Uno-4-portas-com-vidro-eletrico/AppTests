@@ -28,11 +28,6 @@ describe('Login tests', () => {
 describe('persist tests', () => {
 
   it('should persist session after app restart', async () => {
-    const button = $('//android.widget.TextView[@text="Entrar"]');
-    await button.click();
-    await loginWithCredentials("teste@example.com", "123456");
-    await driver.pause(5000);
-
     // Fecha e reabre o app via comandos compatíveis
     await driver.execute('mobile: terminateApp', { appId: 'com.uno4portas.EloDrinksApp' });
     await driver.execute('mobile: activateApp', { appId: 'com.uno4portas.EloDrinksApp' });
@@ -46,12 +41,8 @@ describe('persist tests', () => {
 describe('escolher pacotes test', () => {
 
 it('should show seleção de pacotes', async () => {
-  const button = $('//android.widget.TextView[@text="Entrar"]');
   const button_plus = $('//android.widget.TextView[@text=""]');
   const button_package = $('//android.view.ViewGroup[@content-desc="Escolher Pacotes"]');
-  await button.click();
-  await loginWithCredentials("teste@example.com", "123456");
-  await driver.pause(5000);
 
   await button_plus.click();
   await expect(driver.$('//android.widget.TextView[@text="Escolher Pacotes"]')).toBeDisplayed();
